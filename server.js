@@ -3,6 +3,7 @@ const bodyParser= require('body-parser')
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.set('view engine', 'ejs')
 
 const MongoClient = require('mongodb').MongoClient
 
@@ -17,13 +18,11 @@ MongoClient.connect('mongodb://owner:tahFah7x@eg-mongodb/jmht001', (err, client)
 })
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
-  db.collection('projects').find().toArray(function(err, results) {
-    console.log(results)
-    // send HTML file populated with quotes here
+  db.collection('projects').find().toArray((err, result) => {
+    if (err) return console.log(err)
+    // renders index.ejs
+    res.render('index.ejs', {projects: result})
   })
-  // Note: __dirname is directory that contains the JavaScript source code. Try logging it and see what you get!
-  // Mine was '/Users/zellwk/Projects/demo-repos/crud-express-mongo' for this app.
 })
 
 app.post('/projects', (req, res) => {
