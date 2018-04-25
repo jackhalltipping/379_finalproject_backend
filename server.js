@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
   db.collection('projects').find().toArray((err, result) => {
     if (err) return console.log(err)
     console.log(result)
-    res.render('index.ejs', {projects: result})
+    //res.render('index.ejs', {projects: result})
+    res.send(result)
   })
   // db.collection("projects").findOne({"pin":"123"}, function(err, result) {
   //   if (err) throw err;
@@ -31,14 +32,24 @@ app.get('/', (req, res) => {
   //console.log(db.collection('projects').find())
 })
 
-app.get('/:pin', (req, res) => {
-  //get specific pin
-  //console.log(db.collection('projects').find({"pin": "123"}))
-  db.collection("projects").findOne({"pin":"/:pin"}, function(err, result) {
+// app.get('/:pin', (req, res) => {
+//   //get specific pin
+//   //console.log(db.collection('projects').find({"pin": "123"}))
+//   db.collection("projects").findOne({"pin":"123"}, function(err, result) {
+//     if (err) throw err
+//     console.log(result)
+//     res.send(result)
+//   });
+//   console.log('getting specific pin')
+// })
+
+app.get('/:pin', function (req, res) {
+  //res.send(req.params)
+  db.collection("projects").findOne(req.params, function(err, result) {
     if (err) throw err
     console.log(result)
+    res.send(result)
   });
-  console.log('getting specific pin')
 })
 
 app.post('/projects', (req, res) => {
