@@ -21,14 +21,23 @@ app.get('/', (req, res) => {
   //return whole JSON database
   db.collection('projects').find().toArray((err, result) => {
     if (err) return console.log(err)
+    console.log(result)
     res.render('index.ejs', {projects: result})
   })
+  // db.collection("projects").findOne({"pin":"123"}, function(err, result) {
+  //   if (err) throw err;
+  //   console.log(result);
+  // });
   //console.log(db.collection('projects').find())
 })
 
 app.get('/:pin', (req, res) => {
   //get specific pin
   //console.log(db.collection('projects').find({"pin": "123"}))
+  db.collection("projects").findOne({"pin":"/:pin"}, function(err, result) {
+    if (err) throw err
+    console.log(result)
+  });
   console.log('getting specific pin')
 })
 
