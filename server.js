@@ -6,11 +6,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 const MongoClient = require('mongodb').MongoClient
 
-var db
+var db = null
 
 MongoClient.connect('mongodb://owner:tahFah7x@eg-mongodb/jmht001', (err, client) => {
   if (err) return console.log(err)
-  db = client.db('jmht001') // whatever your database name is
+  db = client.db('jmht001')
   app.listen(3000, () => {
     console.log('listening on 3000')
   })
@@ -18,11 +18,15 @@ MongoClient.connect('mongodb://owner:tahFah7x@eg-mongodb/jmht001', (err, client)
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
+  db.collection('projects').find().toArray(function(err, results) {
+    console.log(results)
+    // send HTML file populated with quotes here
+  })
   // Note: __dirname is directory that contains the JavaScript source code. Try logging it and see what you get!
   // Mine was '/Users/zellwk/Projects/demo-repos/crud-express-mongo' for this app.
 })
 
-app.post('/quotes', (req, res) => {
+app.post('/projects', (req, res) => {
   db.collection('projects').save(req.body, (err, result) => {
     if (err) return console.log(err)
 
