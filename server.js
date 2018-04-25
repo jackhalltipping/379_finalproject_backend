@@ -23,5 +23,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/quotes', (req, res) => {
-  console.log(req.body)
+  db.collection('projects').save(req.body, (err, result) => {
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+    res.redirect('/')
+  })
 })
