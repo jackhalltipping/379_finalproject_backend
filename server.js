@@ -23,11 +23,12 @@ app.get('/', (req, res) => {
     if (err) return console.log(err)
     res.render('index.ejs', {projects: result})
   })
-  console.log(db.collection('projects').find())
+  //console.log(db.collection('projects').find())
 })
 
 app.get('/:pin', (req, res) => {
   //get specific pin
+  //console.log(db.collection('projects').find({"pin": "123"}))
   console.log('getting specific pin')
 })
 
