@@ -18,11 +18,17 @@ MongoClient.connect('mongodb://owner:tahFah7x@eg-mongodb/jmht001', (err, client)
 })
 
 app.get('/', (req, res) => {
+  //return whole JSON database
   db.collection('projects').find().toArray((err, result) => {
     if (err) return console.log(err)
-    // renders index.ejs
     res.render('index.ejs', {projects: result})
   })
+  console.log(db.collection('projects').find())
+})
+
+app.get('/:pin', (req, res) => {
+  //get specific pin
+  console.log('getting specific pin')
 })
 
 app.post('/projects', (req, res) => {

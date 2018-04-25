@@ -2,24 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MY APP</title>
+  <title>CrowdCode</title>
 </head>
 <body>
-  May Node and Express be with you.
 
   <ul class="projects">
   <% for(var i=0; i<projects.length; i++) {%>
     <li class="project">
-      <span><%= projects[i].name %></span>
-      <span><%= projects[i].project %></span>
+      <span><%= projects[i].pin %></span>
+      <span><%= projects[i].password %></span>
+      <span><%= projects[i].function %></span>
+      <span><%= projects[i].title %></span>
+      <span><%= projects[i].description %></span>
     </li>
   <% } %>
   </ul>
 
   <form action="/projects" method="POST">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="project" name="project">
+    <input type="text" placeholder="pin" name="pin">
+    <input type="text" placeholder="password" name="password">
+    <input type="text" placeholder="function" name="function">
+    <input type="text" placeholder="title" name="title">
+    <input type="text" placeholder="description" name="description">
     <button type="submit">Submit</button>
   </form>
+
 </body>
 </html>
