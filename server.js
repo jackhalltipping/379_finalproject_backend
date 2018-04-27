@@ -9,9 +9,9 @@ const MongoClient = require('mongodb').MongoClient
 
 var db = null
 
-MongoClient.connect('mongodb://owner:tahFah7x@eg-mongodb/jmht001', (err, client) => {
+MongoClient.connect('mongodb://admin:password@18.191.29.110/projectDB', (err, client) => {
   if (err) return console.log(err)
-  db = client.db('jmht001')
+  db = client.db('projectDB')
   app.listen(3000, () => {
     console.log('listening on 3000')
   })
