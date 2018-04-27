@@ -17,7 +17,7 @@ MongoClient.connect('mongodb://admin:password@18.191.29.110/projectDB', (err, cl
   })
 })
 
-app.get('https://calm-headland-11311.herokuapp.com/', (req, res) => {
+app.get('/', (req, res) => {
   //return whole JSON database
   db.collection('projects').find().toArray((err, result) => {
     if (err) return console.log(err)
