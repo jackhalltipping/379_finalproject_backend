@@ -12,9 +12,9 @@ var db = null
 MongoClient.connect('mongodb://admin:password@18.191.29.110/projectDB', (err, client) => {
   if (err) return console.log(err)
   db = client.db('projectDB')
-  app.listen(3000, () => {
-    console.log('listening on 3000')
-  })
+  app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 })
 
 app.get('/', (req, res) => {
