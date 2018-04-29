@@ -6,7 +6,7 @@ CrowdCode allows people from all over the world to code together.
 
 http://crowdcode1.s3-website.us-east-2.amazonaws.com/
 
-## API
+## Backend API
 
 https://calm-headland-11311.herokuapp.com/
 
@@ -18,6 +18,16 @@ and finally hosted the RESTful API using heroku.
 ## Frontend
 
 https://github.com/jslee98/CrowdCode
+
+## Download/run
+
+Simply clone the repo (node modules are included in the repo) and run
+
+'npm run dev'
+
+to start the app on http://localhost:3000/
+
+this will launch the backend API. To interact with the endpoint, use /pin, where pin is the pin of the project
 
 ## Authors
 
