@@ -57,3 +57,9 @@ app.post('/projects', (req, res) => {
     res.redirect('/')
   })
 })
+
+
+app.post(‘/:pin’, (req, res) => {
+  db.collection(‘projects’).update({pin:req.params}, {$set: {functions[req.body.index].proposed_solutions:req.body.solutions}});
+
+}
