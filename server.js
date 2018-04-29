@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   //returns whole JSON MongoDB database
   db.collection('projects').find().toArray((err, result) => {
     if (err) return console.log(err)
-    //console.log(result)
+    console.log(result)
     res.send(result)
   })
 })
@@ -44,7 +44,7 @@ app.get('/:pin', function (req, res) {
     if (err) throw err
     if (result == null)
       result = { result: "error" }
-    //console.log(result)
+    console.log(result)
     res.send(result)
   });
 })
@@ -61,10 +61,9 @@ app.post('/projects', (req, res) => {
 
 app.post('/:pin', (req, res) => {
   //this post is used to update to an existing pin when changing a function
-  db.collection('projects').updateOne({pin:req.params.pin}, {$set: {functions:req.body}}, function(err, count, result) {
+  db.collection('projects').updateOne({pin:req.params.pin}, {$set: {functions:req.body.updatedFunctions}}, function(err, count, result) {
     if (err) return console.log(err)
     console.log('saved to database')
-    console.log(req.body)
     res.redirect('/')
   })
 })
