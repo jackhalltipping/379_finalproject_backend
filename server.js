@@ -51,6 +51,7 @@ app.get('/:pin', function (req, res) {
 
 app.post('/projects', (req, res) => {
   //used to post to the projects collection in the MongoDB
+  //this post is used when creating a new pin
   db.collection('projects').save(req.body, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
@@ -60,5 +61,6 @@ app.post('/projects', (req, res) => {
 
 
 app.post('/:pin', (req, res) => {
+  //this post is used to update to an existing pin when changing a function
   db.collection('projects').update({pin:req.params}, {$set: {functions:req.body}});
 })
