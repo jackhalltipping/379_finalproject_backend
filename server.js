@@ -59,9 +59,11 @@ app.post('/projects', (req, res) => {
   })
 })
 
-
 app.post('/:pin', (req, res) => {
   //this post is used to update to an existing pin when changing a function
-  db.collection('projects').update({pin:req.params}, {$set: {functions:req.body}});
-  res.redirect('/')
-})
+  db.collection(‘projects’).update({pin:req.params}, {$set: {functions:req.body}}, function(err, count, result) {
+    if (err) return console.log(err)
+    console.log('saved to database')
+    res.redirect('/')
+  })
+}
