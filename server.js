@@ -48,6 +48,8 @@ app.get('/:pin', function (req, res) {
   //res.send(req.params)
   db.collection("projects").findOne(req.params, function(err, result) {
     if (err) throw err
+    if (result == null)
+      result = { result: "error" }
     console.log(result)
     res.send(result)
   });
